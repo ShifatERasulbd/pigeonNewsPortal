@@ -43,6 +43,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'showOnTopBar'=>$request->active,
         ]);
 
         // Redirect back with a success message
@@ -80,6 +81,7 @@ class CategoryController extends Controller
     $category->update([
         'name' => $request->name,
         'slug' => Str::slug($request->name),
+        'showOnTopBar'=>$request->active,
     ]);
 
     // Redirect back with a success message
