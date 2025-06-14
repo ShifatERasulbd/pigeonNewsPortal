@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,6 +13,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
+         $categories = Category::all();
+        return view('backend.categories.index', compact('categories'));
     }
 
     /**
@@ -21,6 +23,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -29,6 +32,21 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ]);
+
+        // Create the category
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->route('categories.index')->with('success', 'Category created successfully!');
     }
 
     /**
