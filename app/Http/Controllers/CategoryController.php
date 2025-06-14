@@ -71,6 +71,20 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        // Validate the request
+    $request->validate([
+        'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+    ]);
+
+    // Update the category
+    $category->update([
+        'name' => $request->name,
+        'slug' => Str::slug($request->name),
+    ]);
+
+    // Redirect back with a success message
+    return redirect()->route('categories.index')->with('success', 'Category updated successfully!');
+
     }
 
     /**
@@ -79,5 +93,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+         $category->delete();
+         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 }

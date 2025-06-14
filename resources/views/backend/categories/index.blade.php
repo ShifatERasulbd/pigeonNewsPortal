@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('main')
         <!-- Content Start -->
-        <div class="content">
+        <div class="content bg-white">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
@@ -105,6 +105,21 @@
                     </button>
                 </div>
 
+
+               @if(session('success'))
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+                        <div id="successToast" class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    {{ session('success') }}
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+
                 <!-- Add Category Modal -->
                 <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModal" aria-hidden="true">
                   <div class="modal-dialog">
@@ -135,13 +150,13 @@
                   </div>
                 </div>
 
-                <div class="bg-secondary text-center rounded p-4">
+                <div class="bg-secondary bg-white  text-center rounded p-4">
 
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-white">
-                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                <tr class="text-dark">
+
                                     <th scope="col">SL</th>
                                     <th scope="col">Category Name</th>
                                     <th scope="col">Option</th>
@@ -152,13 +167,50 @@
                                 @if($categories->isNotEmpty())
                                     @foreach($categories as $key => $category)
                                         <tr>
-                                            <td><input class="form-check-input" type="checkbox"></td>
+
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-primary" href="#">Detail</a>
+                                              <a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editCategoryModal{{ $category->id }}">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                              </a>
+                                               <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">
+                                                        <i class="fa-solid fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
+
+
+
+                                         <div class="modal fade" id="editCategoryModal{{ $category->id }}" tabindex="-1" aria-labelledby="editCategoryModalLabel{{ $category->id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="id" value="{{ $category->id }}">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editCategoryModalLabel{{ $category->id }}">Edit Category</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="editCategoryName{{ $category->id }}" class="form-label">Category Name</label>
+                                                                <input type="text" class="form-control" id="editCategoryName{{ $category->id }}" name="name" value="{{ $category->name }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Update Category</button>
+                                                        </div>
+                                                    </form>
+                                                                                                    </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 @else
                                     <tr>
