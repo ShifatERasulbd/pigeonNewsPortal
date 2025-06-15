@@ -48,6 +48,25 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('subcategories.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Bed SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
+                                <rect x="3" y="4" width="8" height="4" rx="1" />
+                                <line x1="11" y1="6" x2="20" y2="6" />
+                                <rect x="6" y="10" width="8" height="4" rx="1" />
+                                <line x1="14" y1="12" x2="20" y2="12" />
+                                <rect x="9" y="16" width="8" height="4" rx="1" />
+                                <line x1="17" y1="18" x2="20" y2="18" />
+                                </svg>
+
+                            <span class="text-white">Sub Category</span>
+                        </a>
+                    </div>
+                </div>
                 <div class="col-md-6 mb-3 sidebar-menu-box ">
                     <div class="shadow-lg rounded-4 p-3">
                         <a href="#" class="nav-item nav-link d-flex flex-column align-items-center p-0">
