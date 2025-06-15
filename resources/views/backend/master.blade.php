@@ -178,6 +178,135 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('backend')}}/js/main.js"></script>
+<!--https://unisharp.github.io/laravel-filemanager/installation  -->
+    <script>
+    function initSummernote(selector) {
+        $(selector).summernote({
+            height: 250,
+            callbacks: {
+                onImageUpload: function(files) {
+                    sendFile(files[0], $(this));
+                },
+                onInit: function() {
+                    let toolbar = $(this).next('.note-editor').find('.note-toolbar');
+                    toolbar.append(`
+                        <button type="button" class="btn btn-sm btn-light btn-lfm" data-type="Images">
+                            <i class="note-icon-picture"></i> Browse
+                        </button>
+                    `);
+                }
+            }
+        });
+    }
+
+    function sendFile(file, $editor) {
+        var data = new FormData();
+        data.append("upload", file);
+        data.append("_token", $('meta[name="csrf-token"]').attr('content'));
+
+        $.ajax({
+            url: "/laravel-filemanager/upload?type=Images",
+            method: "POST",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.url) {
+                    $editor.summernote('insertImage', response.url);
+                } else {
+                    alert("Upload failed");
+                }
+            },
+            error: function(jqXHR) {
+                console.error("Upload error:", jqXHR);
+                alert("Upload error: " + jqXHR.statusText);
+            }
+        });
+    }
+
+    function openLfm(callback, type = 'Images') {
+        window.open('/laravel-filemanager?type=' + type, 'FileManager', 'width=900,height=600');
+        window.SetUrl = callback;
+    }
+
+    $(document).ready(function() {
+        const APP_URL = "{{ url('/') }}";
+
+        // ✅ Initialize Summernote for .my-editor class
+        $('.my-editor').each(function() {
+            initSummernote(this);
+        });
+
+        // ✅ Initialize Summernote for .summernote class
+        $('.summernote').each(function() {
+            initSummernote(this);
+        });
+
+        // ✅ Add new repeater block
+        $('body').on('click', '.btn-increment', function() {
+            let html = $('.clone').html();
+            let newElement = $(html);
+            $('.image-repeater-wrapper').append(newElement);
+            newElement.find('.summernote, .my-editor').each(function() {
+                initSummernote(this);
+            });
+        });
+
+        // ✅ Remove repeater block
+        $('body').on('click', '.remove-btn', function() {
+            $(this).closest('.control-group').remove();
+        });
+
+        // ✅ Handle image upload to Summernote via "Browse"
+        $('body').on('click', '.btn-lfm', function() {
+            let $note = $(this).closest('.note-editor').prev('.summernote, .my-editor');
+            openLfm(function(urls) {
+                if (typeof urls === 'string') {
+                    $note.summernote('insertImage', urls);
+                } else if (Array.isArray(urls)) {
+                    urls.forEach(function(item) {
+                        $note.summernote('insertImage', item.url);
+                    });
+                }
+            }, 'Images');
+        });
+
+        function lfm(id, type, options) {
+            let button = document.getElementById(id);
+            if (!button) return;
+
+            button.addEventListener('click', function() {
+                var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
+                var target_input = document.getElementById(button.getAttribute('data-input'));
+                var target_preview = document.getElementById(button.getAttribute('data-preview'));
+
+                window.open(route_prefix + '?type=' + (options.type || 'file'), 'FileManager', 'width=900,height=600');
+
+                window.SetUrl = function(items) {
+                    var file_path = items.map(item => item.url).join(',');
+                    target_input.value = file_path;
+                    target_input.dispatchEvent(new Event('change'));
+
+                    if (target_preview) {
+                        target_preview.innerHTML = '';
+                        items.forEach(item => {
+                            let img = document.createElement('img');
+                            img.setAttribute('style', 'height: 5rem');
+                            img.setAttribute('src', item.thumb_url);
+                            target_preview.appendChild(img);
+                        });
+                        target_preview.dispatchEvent(new Event('change'));
+                    }
+                };
+            });
+        }
+
+        // ✅ Initialize LFM picker button
+        lfm('lfm', 'image', {
+            prefix: '/laravel-filemanager'
+        });
+    });
+</script>
 </body>
 
 </html>

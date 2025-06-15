@@ -67,19 +67,21 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 sidebar-menu-box ">
+
+
+
+
+
+                  <div class="col-md-6 mb-3 sidebar-menu-box ">
                     <div class="shadow-lg rounded-4 p-3">
-                        <a href="#" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                        <a href="{{ route('news.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
                             <!-- Widgets SVG (grid) -->
-                            <svg viewBox="0 0 16 16">
-                                <rect width="4" height="4" x="1" y="1" rx="1"/>
-                                <rect width="4" height="4" x="6" y="1" rx="1"/>
-                                <rect width="4" height="4" x="11" y="1" rx="1"/>
-                                <rect width="4" height="4" x="1" y="6" rx="1"/>
-                                <rect width="4" height="4" x="6" y="6" rx="1"/>
-                                <rect width="4" height="4" x="11" y="6" rx="1"/>
-                            </svg>
-                            <span class="text-white">Widgets</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-news">
+                            <rect x="3" y="5" width="18" height="14" rx="2" ry="2" stroke="currentColor" fill="none"/>
+                            <path d="M7 8h10M7 12h6M7 16h10" />
+                          </svg>
+
+                            <span class="text-white">News</span>
                         </a>
                     </div>
                 </div>
