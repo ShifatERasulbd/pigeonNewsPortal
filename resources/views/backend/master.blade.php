@@ -24,12 +24,17 @@
     <!-- Libraries Stylesheet -->
     <link href="{{asset('backend')}}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="{{asset('backend')}}/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <!-- Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 
+    <!-- Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('backend')}}/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="{{asset('backend')}}/css/style.css" rel="stylesheet">
+
 </head>
 
 <body>

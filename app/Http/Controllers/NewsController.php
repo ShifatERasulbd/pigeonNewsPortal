@@ -24,6 +24,9 @@ class NewsController extends Controller
     public function create()
     {
         //
+         $categories = Category::all();
+    $subcategories = SubCategory::all();
+    return view('backend.news.create', compact('categories', 'subcategories'));
 
     }
 
@@ -33,6 +36,23 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         //
+         // Validate the request
+     $request->validate([
+        'title' => 'required|string|max:255',
+        'category_id' => 'required|exists:categories,id',
+     
+        'content' => 'required|string',
+    ]);
+
+    News::create([
+        'title' => $request->title,
+        'category_id' => $request->category_id,
+        'subcategory_id' => $request->subcategory_id,
+        'description' => $request->content, // map content to description
+        'slug' => \Str::slug($request->title),
+    ]);
+
+    return redirect()->route('news.index')->with('success', 'News created successfully!');
     }
 
     /**

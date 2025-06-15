@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_id');
+            $table->integer('subcategory_id');
             $table->string('title');
+            $table->string('slug');
             $table->string('image');
             $table->longtext('description');
             $table->string('video')->nullable();

@@ -40,6 +40,8 @@
                                     <th scope="col">SL</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">News Title</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Subcategory</th>
                                     <th scope="col">Details</th>
                                     <th scope="col">Video</th>
                                     <th scope="col">Option</th>
@@ -53,11 +55,13 @@
 
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $news->title }}</td>
-                                            <td>{{ $news->image }}</td>
+                                            <td>{{ $news->title }}</td>
+                                            <td>{{ $news->category_id }}</td>
+                                            <td>{{ $news->subcategory_id }}</td>
                                             <td>{{ $news->description }}</td>
                                             <td>{{ $news->video }}</td>
                                             <td>
-                                              <a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editCategoryModal{{ $category->id }}">
+                                              <a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editCategoryModal{{ $news->id }}">
                                                 <i class="fa-solid fa-pen"></i> Edit
                                               </a>
                                                <form action="{{ route('news.destroy', $news->id) }}" method="POST" style="display:inline-block;">
