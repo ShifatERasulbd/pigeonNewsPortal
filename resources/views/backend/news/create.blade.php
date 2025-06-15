@@ -2,37 +2,74 @@
 @section('main')
 <div class="container mt-4">
     <h3>Add News</h3>
-    <form action="{{ route('news.store') }}" method="POST">
+    <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mb-3">
-            <label for="title" class="form-label">News Title</label>
-            <input type="text" class="form-control" id="title" name="title" required>
+        <div class="row">
+            <!-- Left Column (col-md-8) -->
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">News Content</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">News Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                           <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column (col-md-4) -->
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">News Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="category_id" class="form-label">Category</label>
+                            <select class="form-select" id="category_id" name="category_id" required>
+                                <option value="">Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subcategory_id" class="form-label">Subcategory</label>
+                            <select class="form-select" id="subcategory_id" name="subcategory_id">
+                                <option value="">Select Subcategory</option>
+                                @foreach($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}" data-category="{{ $subcategory->categoryId }}">
+                                        {{ $subcategory->SubCategoryName }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Featured Image</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                        <i class="fa fa-picture-o"></i> Choose
+                                    </a>
+                                </span>
+                                <input id="thumbnail" class="form-control" type="text" name="image">
+                            </div>
+                            <div id="holder" class="img-preview mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Publish News</button>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="category_id" class="form-label">Category</label>
-            <select class="form-select" id="category_id" name="category_id" required>
-                <option value="">Select Category</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="subcategory_id" class="form-label">Subcategory</label>
-            <select class="form-select" id="subcategory_id" name="subcategory_id">
-                <option value="">Select Subcategory</option>
-                @foreach($subcategories as $subcategory)
-                    <option value="{{ $subcategory->id }}" data-category="{{ $subcategory->categoryId }}">
-                        {{ $subcategory->SubCategoryName }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add News</button>
     </form>
 </div>
 
@@ -56,3 +93,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 @endsection
+

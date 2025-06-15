@@ -56,8 +56,8 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $news->title }}</td>
                                             <td>{{ $news->title }}</td>
-                                            <td>{{ $news->category_id }}</td>
-                                            <td>{{ $news->subcategory_id }}</td>
+                                           <td>{{ $news->category ? $news->category->name : 'N/A' }}</td>
+                                            <td>{{ $news->subcategory ? $news->subcategory->SubCategoryName : 'N/A' }}</td>
                                             <td>{{ $news->description }}</td>
                                             <td>{{ $news->video }}</td>
                                             <td>
