@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\News;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -24,9 +25,10 @@ class NewsController extends Controller
     public function create()
     {
         //
+        $location=Location::all();
          $categories = Category::all();
     $subcategories = SubCategory::all();
-    return view('backend.news.create', compact('categories', 'subcategories'));
+    return view('backend.news.create', compact('categories', 'subcategories','location'));
 
     }
 
@@ -43,6 +45,7 @@ class NewsController extends Controller
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image
             'author' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
         ]);
 
         // Handle image upload
@@ -66,6 +69,7 @@ class NewsController extends Controller
             'meta_keywords' => $request->meta_keywords,
             'image' => $imagePath, // Save the image path
             'lead_news' => $request->lead_news,
+             'location' => $request->location,
         ]);
 
         return redirect()->route('news.index')->with('success', 'News created successfully!');

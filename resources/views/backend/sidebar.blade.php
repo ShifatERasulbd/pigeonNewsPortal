@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                    <div class="col-md-6 mb-3 sidebar-menu-box ">
+                <div class="col-md-6 mb-3 sidebar-menu-box ">
                     <div class="shadow-lg rounded-4 p-3">
                         <a href="{{ route('lead-news') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
                             <!-- Widgets SVG (grid) -->
@@ -137,6 +137,25 @@
                         </a>
                     </div>
                 </div>
+
+
+                  <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('location.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <!-- Map pin -->
+                            <path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z" />
+                            <!-- Center circle -->
+                            <circle cx="12" cy="11" r="2.5" fill="white" stroke="white"/>
+                        </svg>
+                            <span class="text-white">Location</span>
+                        </a>
+                    </div>
+                </div>
+
+
+
 
             </div>
         </div>

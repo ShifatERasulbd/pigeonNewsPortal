@@ -19,6 +19,7 @@ class News extends Model
     'TopLead',
     'lead_news',
     'meta_keywords',
+    'location',
     'slug',
 ];
   public function category()
@@ -29,5 +30,10 @@ class News extends Model
     public function subcategory()
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+
+     public function location()
+    {
+        return $this->belongsTo(Location::class, 'location');
     }
 }
