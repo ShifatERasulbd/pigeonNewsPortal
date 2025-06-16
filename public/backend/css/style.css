@@ -342,3 +342,39 @@
                         .tag-close:hover {
                             color: #dc3545;
                         }
+
+                          /* Custom white background for form inputs */
+    .form-control, .form-select {
+        background-color: #ffffff;
+        border-color: #ced4da;
+        color: #212529;
+    }
+
+    .form-control:focus, .form-select:focus {
+        background-color: #ffffff;
+        border-color: var(--primary);
+        color: #212529;
+        box-shadow: 0 0 0 0.25rem rgba(235, 22, 22, 0.25);
+    }
+
+    /* Style for file inputs which have special handling */
+    input[type="file"].form-control {
+        background-color: #ffffff;
+    }
+
+    /* Style for checkboxes and switches */
+    .form-check-input {
+        background-color: #ffffff;
+        border-color: #ced4da;
+    }
+
+    .form-check-input:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    /* Tags input styling */
+    .tags-container .tag {
+        background-color: #e9ecef;
+        color: #212529;
+    }

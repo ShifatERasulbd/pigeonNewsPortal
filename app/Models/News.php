@@ -9,6 +9,7 @@ class News extends Model
     //
     protected $fillable = [
     'title',
+    'author_name',
     'video',
     'image',
     'slug',

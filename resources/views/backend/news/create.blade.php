@@ -18,6 +18,11 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="author" class="form-label">Author Name</label>
+                            <input type="text" class="form-control" id="author" name="author" placeholder="Enter author name">
+                        </div>
+
+                        <div class="mb-3">
                             <label for="meta_keywords" class="form-label">Meta Keywords</label>
                             <div class="tags-input-wrapper">
                                 <input type="text" class="form-control" id="meta_keywords_input" placeholder="Type and press Enter">
@@ -169,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 @endsection
+
 
 
 

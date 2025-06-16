@@ -42,6 +42,7 @@ class NewsController extends Controller
             'meta_keywords' => 'nullable|string',
             'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image
+            'author' => 'required|string|max:255',
         ]);
 
         // Handle image upload
@@ -55,6 +56,7 @@ class NewsController extends Controller
 
         News::create([
             'title' => $request->title,
+            'author_name' => $request->author ,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'description' => $request->content, // map content to description
@@ -63,7 +65,7 @@ class NewsController extends Controller
             'TopLead' => $request->top_lead,
             'meta_keywords' => $request->meta_keywords,
             'image' => $imagePath, // Save the image path
-            'lead_news' => $request->lead_news, 
+            'lead_news' => $request->lead_news,
         ]);
 
         return redirect()->route('news.index')->with('success', 'News created successfully!');
