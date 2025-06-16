@@ -156,6 +156,21 @@
 
 
 
+                 <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('image-category.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M4 4h5l2 2h9a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm1 3v11h14V8H6zm3 9l2.5-3.01L14 17h-8zm7-6.5a1.5 1.5 0 1 0-3.001-.001A1.5 1.5 0 0 0 16 9.5z"/>
+                        </svg>
+
+                            <span class="text-white">Image Category</span>
+                        </a>
+                    </div>
+                </div>
+
+
+
 
             </div>
         </div>

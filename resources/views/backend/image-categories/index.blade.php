@@ -9,8 +9,10 @@
             <div class="container-fluid pt-4 px-4">
                 <div class="d-flex justify-content-end mb-2">
                     <!-- Button trigger modal -->
-                    <a href="{{ route('news.create') }}" class="btn btn-primary btn-sm d-flex align-items-center gap-1"> <i class="fa fa-plus"></i>Add News</a>
-
+                   <button type="button" class="btn btn-primary btn-sm d-flex align-items-center gap-1 text-dark" data-bs-toggle="modal" data-bs-target="#addImageCategoryModal">
+                        <i class="fa fa-plus"></i>
+                        Add Image Category
+                    </button>
                 </div>
 
 
@@ -28,7 +30,7 @@
                 @endif
 
 
-              @include ('backend.categories.create')
+              @include ('backend.image-categories.create')
 
                 <div class="bg-secondary bg-white  text-center rounded p-4">
 
@@ -38,33 +40,23 @@
                                 <tr class="text-dark">
 
                                     <th scope="col">SL</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">News Title</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Subcategory</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Video</th>
+                                    <th scope="col">Image Category Name</th>
                                     <th scope="col">Option</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($news->isNotEmpty())
-                                    @foreach($news as $key => $news)
+                                @if($imageCategories->isNotEmpty())
+                                    @foreach($imageCategories as $key => $imageCategories)
                                         <tr>
 
                                             <td>{{ $key + 1 }}</td>
-                                            <td><img src="{{ asset($news->image) }}" alt="{{ $news->title }}" width="150"></td>
-                                            <td>{{ $news->title }}</td>
-                                           <td>{{ $news->category ? $news->category->name : 'N/A' }}</td>
-                                            <td>{{ $news->subcategory ? $news->subcategory->SubCategoryName : 'N/A' }}</td>
-                                            <td>{{ $news->description }}</td>
-                                            <td>{{ $news->video }}</td>
+                                            <td>{{ $imageCategories->name }}</td>
                                             <td>
-                                              <a class="btn btn-sm btn-warning" href="{{ route('news.edit', $news->id) }}">
+                                              <a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editImageCategoryModal{{ $imageCategories->id }}">
                                                 <i class="fa-solid fa-pen"></i> Edit
                                               </a>
-                                               <form action="{{ route('news.destroy', $news->id) }}" method="POST" style="display:inline-block;">
+                                               <form action="{{ route('image-category.destroy', $imageCategories->id) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">
@@ -76,11 +68,11 @@
 
 
 
-
+                                         @include ('backend.image-categories.edit')
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="6" class="text-center text-dark">No categories found.</td>
+                                        <td colspan="4" class="text-center text-dark">No categories found.</td>
                                     </tr>
                                 @endif
 

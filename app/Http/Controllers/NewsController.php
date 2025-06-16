@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\News;
@@ -89,6 +90,10 @@ class NewsController extends Controller
     public function edit(News $news)
     {
         //
+        $location=Location::all();
+         $categories = Category::all();
+    $subcategories = SubCategory::all();
+    return view('backend.news.edit', compact('categories', 'subcategories','location','news'));
     }
 
     /**
@@ -96,7 +101,51 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'subcategory_id' => 'nullable|exists:sub_categories,id',
+            'content' => 'required|string',
+            'author' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'meta_keywords' => 'nullable|string',
+            'video' => 'nullable|url',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle image upload
+        $imagePath = $news->image; // Keep existing image by default
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($news->image && file_exists(public_path($news->image))) {
+                unlink(public_path($news->image));
+            }
+
+            // Upload new image
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/news'), $imageName);
+            $imagePath = 'uploads/news/' . $imageName;
+        }
+
+        // Update the news
+        $news->update([
+            'title' => $request->title,
+            'author_name' => $request->author,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'description' => $request->content,
+            'video' => $request->video,
+            'slug' => \Str::slug($request->title),
+            'TopLead' => $request->has('top_lead') ? 1 : 0,
+            'lead_news' => $request->has('lead_news') ? 1 : 0,
+            'meta_keywords' => $request->meta_keywords,
+            'image' => $imagePath,
+            'location' => $request->location,
+        ]);
+
+        return redirect()->route('news.index')->with('success', 'News updated successfully!');
     }
 
     /**
@@ -104,7 +153,22 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        try {
+            // Delete the image file if it exists
+            if ($news->image && file_exists(public_path($news->image))) {
+                unlink(public_path($news->image));
+            }
+
+            // Delete the news record
+            $news->delete();
+
+            return redirect()->route('news.index')->with('success', 'News deleted successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error deleting news: ' . $e->getMessage());
+            return redirect()->route('news.index')->with('error', 'Failed to delete news. ' . $e->getMessage());
+        }
     }
 }
+
+
 
