@@ -85,21 +85,59 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 mb-3 sidebar-menu-box ">
+
+                 <div class="col-md-6 mb-3 sidebar-menu-box ">
                     <div class="shadow-lg rounded-4 p-3">
-                        <a href="#" class="nav-item nav-link d-flex flex-column align-items-center p-0">
-                            <!-- Forms SVG (keyboard) -->
-                            <svg viewBox="0 0 16 16">
-                                <rect width="14" height="6" x="1" y="5" rx="1"/>
-                                <rect width="2" height="2" x="3" y="7" rx="0.5"/>
-                                <rect width="2" height="2" x="6" y="7" rx="0.5"/>
-                                <rect width="2" height="2" x="9" y="7" rx="0.5"/>
-                                <rect width="2" height="2" x="12" y="7" rx="0.5"/>
+                        <a href="{{ route('Top-lead-news') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <!-- Newspaper outline -->
+                                <rect x="3" y="5" width="18" height="14" rx="2" ry="2" fill="none" stroke="white"/>
+
+                                <!-- Headline line -->
+                                <line x1="7" y1="9" x2="17" y2="9" stroke="white"/>
+
+                                <!-- Content lines -->
+                                <line x1="7" y1="12" x2="14" y2="12" stroke="white"/>
+                                <line x1="7" y1="15" x2="14" y2="15" stroke="white"/>
+
+                                <!-- Crown icon (Top indicator) -->
+                                <path d="M6 4l2 2 2-2 2 2 2-2 2 2 2-2v2H6V4z" fill="white" stroke="white"/>
                             </svg>
-                            <span class="text-white">Forms</span>
+
+
+
+                            <span class="text-white">Top Lead News</span>
                         </a>
                     </div>
                 </div>
+
+                    <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('lead-news') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                <!-- Newspaper outline -->
+                                <rect x="3" y="5" width="18" height="14" rx="2" ry="2" fill="none" stroke="white"/>
+
+                                <!-- Headline line -->
+                                <line x1="7" y1="9" x2="17" y2="9" stroke="white"/>
+
+                                <!-- Content lines -->
+                                <line x1="7" y1="12" x2="14" y2="12" stroke="white"/>
+                                <line x1="7" y1="15" x2="14" y2="15" stroke="white"/>
+
+                                <!-- Crown icon (Top indicator) -->
+                                <path d="M6 4l2 2 2-2 2 2 2-2 2 2 2-2v2H6V4z" fill="white" stroke="white"/>
+                            </svg>
+
+
+
+                            <span class="text-white">Lead News</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>

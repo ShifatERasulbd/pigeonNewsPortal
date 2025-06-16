@@ -35,24 +35,38 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-         // Validate the request
-     $request->validate([
-        'title' => 'required|string|max:255',
-        'category_id' => 'required|exists:categories,id',
-     
-        'content' => 'required|string',
-    ]);
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'meta_keywords' => 'nullable|string',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image
+        ]);
 
-    News::create([
-        'title' => $request->title,
-        'category_id' => $request->category_id,
-        'subcategory_id' => $request->subcategory_id,
-        'description' => $request->content, // map content to description
-        'slug' => \Str::slug($request->title),
-    ]);
+        // Handle image upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/news'), $imageName);
+            $imagePath = 'uploads/news/' . $imageName;
+        }
 
-    return redirect()->route('news.index')->with('success', 'News created successfully!');
+        News::create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'description' => $request->content, // map content to description
+            'video' => $request->video,
+            'slug' => \Str::slug($request->title),
+            'TopLead' => $request->top_lead,
+            'meta_keywords' => $request->meta_keywords,
+            'image' => $imagePath, // Save the image path
+            'lead_news' => $request->lead_news, 
+        ]);
+
+        return redirect()->route('news.index')->with('success', 'News created successfully!');
     }
 
     /**
@@ -87,3 +101,4 @@ class NewsController extends Controller
         //
     }
 }
+

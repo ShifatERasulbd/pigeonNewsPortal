@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('image');
             $table->longtext('description');
             $table->string('video')->nullable();
+            $table->boolean('TopLead')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->timestamps();
         });
     }

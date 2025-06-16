@@ -319,3 +319,26 @@
         transform: translateY(-4px) scale(1.03);
         box-shadow: 0 16px 32px rgba(0,0,0,0.35), 0 3px 6px rgba(0,0,0,0.18);
     }
+
+    .tags-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                        }
+                        .tag {
+                            background-color: #e9ecef;
+                            border-radius: 4px;
+                            padding: 5px 10px;
+                            display: inline-flex;
+                            align-items: center;
+                            margin-bottom: 5px;
+                        }
+                        .tag-close {
+                            margin-left: 8px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            color: #6c757d;
+                        }
+                        .tag-close:hover {
+                            color: #dc3545;
+                        }

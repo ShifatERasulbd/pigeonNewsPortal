@@ -2,6 +2,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\LeadNewsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('subcategories', SubCategoryController::class);
-       Route::resource('news', NewsController::class);
+    Route::resource('news', NewsController::class);
+    Route::get('Top-lead-news', [LeadNewsController::class, 'TopLead'])->name('Top-lead-news');
+    Route::get('lead-news', [LeadNewsController::class, 'lead'])->name('lead-news');
 });
 
  Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

@@ -9,10 +9,15 @@ class News extends Model
     //
     protected $fillable = [
     'title',
+    'video',
+    'image',
     'slug',
     'category_id',
     'subcategory_id',
     'description',
+    'TopLead',
+    'lead_news',
+    'meta_keywords',
     'slug',
 ];
   public function category()
