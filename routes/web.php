@@ -3,6 +3,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ImageCategoryController;
+use App\Http\Controllers\ImageGalleryController;
+use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LeadNewsController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +30,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('news', NewsController::class);
     Route::resource('location', LocationController::class);
     Route::resource('image-category', ImageCategoryController::class);
+    Route::resource('image-gallery', ImageGalleryController::class);
+    Route::resource('gallery-image', GalleryImageController::class);
     Route::get('Top-lead-news', [LeadNewsController::class, 'TopLead'])->name('Top-lead-news');
     Route::get('lead-news', [LeadNewsController::class, 'lead'])->name('lead-news');
 });
