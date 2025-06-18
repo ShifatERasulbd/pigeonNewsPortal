@@ -18,14 +18,7 @@ class ImageGalleryController extends Controller
         return view('backend.image-galleries.index', compact('imageGalleries', 'imageCategories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -71,21 +64,8 @@ class ImageGalleryController extends Controller
         return redirect()->route('image-gallery.index')->with('success', 'Gallery created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ImageGallery $imageGallery)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ImageGallery $imageGallery)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
