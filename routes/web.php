@@ -10,6 +10,8 @@ use App\Http\Controllers\LeadNewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdvertiseLocationController;
 use App\Http\Controllers\AdvertiseController;
+use App\Http\Controllers\VideoGalleryCategoryController;
+use App\Http\Controllers\VideoGalleryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,6 +38,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('gallery-image', GalleryImageController::class);
     Route::resource('advertise-location', AdvertiseLocationController::class);
     Route::resource('advertise', AdvertiseController::class);
+    Route::resource('video-gallery-category', VideoGalleryCategoryController::class);
+    Route::resource('video-gallery', VideoGalleryController::class);
     Route::get('Top-lead-news', [LeadNewsController::class, 'TopLead'])->name('Top-lead-news');
     Route::get('lead-news', [LeadNewsController::class, 'lead'])->name('lead-news');
 });

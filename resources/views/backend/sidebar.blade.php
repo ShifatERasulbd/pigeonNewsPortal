@@ -190,11 +190,12 @@
                     <div class="shadow-lg rounded-4 p-3">
                         <a href="{{ route('advertise.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
                             <!-- Widgets SVG (grid) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-photo">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                            <circle cx="8.5" cy="8.5" r="1.5" />
-                            <path d="M21 15l-5-5L5 21" />
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect y="4" width="24" height="2" rx="1" fill="white"/>
+                            <rect y="11" width="24" height="2" rx="1" fill="white"/>
+                            <rect y="18" width="24" height="2" rx="1" fill="white"/>
                         </svg>
+
 
 
                             <span class="text-white">Advertise</span>
@@ -202,8 +203,38 @@
                     </div>
                 </div>
 
+                  <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('video-gallery-category.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M10 16.5l6-4.5-6-4.5v9zm-7-11h18v13H3v-13zm2 2v9h14v-9H5z"/>
+                        </svg>
 
 
+
+
+                            <span class="text-white">Video Gallery Category</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mb-3 sidebar-menu-box ">
+                    <div class="shadow-lg rounded-4 p-3">
+                        <a href="{{ route('video-gallery.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                            <!-- Widgets SVG (grid) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                            <path d="M10 16.5l6-4.5-6-4.5v9zm-7-11h18v13H3v-13zm2 2v9h14v-9H5z"/>
+                        </svg>
+
+
+
+
+                            <span class="text-white">Video Gallery</span>
+                        </a>
+                    </div>
+                </div>
 
 
 
