@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryImageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LeadNewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdvertiseLocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::resource('image-category', ImageCategoryController::class);
     Route::resource('image-gallery', ImageGalleryController::class);
     Route::resource('gallery-image', GalleryImageController::class);
+    Route::resource('advertise-location', AdvertiseLocationController::class);
     Route::get('Top-lead-news', [LeadNewsController::class, 'TopLead'])->name('Top-lead-news');
     Route::get('lead-news', [LeadNewsController::class, 'lead'])->name('lead-news');
 });
@@ -48,3 +50,4 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
 
 require __DIR__.'/auth.php';
+

@@ -171,7 +171,7 @@
 
                  <div class="col-md-6 mb-3 sidebar-menu-box ">
                     <div class="shadow-lg rounded-4 p-3">
-                        <a href="{{ route('image-gallery.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
+                        <a href="{{ route('advertise-location.index') }}" class="nav-item nav-link d-flex flex-column align-items-center p-0">
                             <!-- Widgets SVG (grid) -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-photo">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -180,10 +180,13 @@
                         </svg>
 
 
-                            <span class="text-white">Image Gallery</span>
+                            <span class="text-white">Advertise Location</span>
                         </a>
                     </div>
                 </div>
+
+
+
 
 
 
